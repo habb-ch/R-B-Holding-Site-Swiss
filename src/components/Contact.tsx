@@ -34,8 +34,8 @@ export default function Contact({ locale }: ContactProps) {
         {
             icon: Mail,
             label: t.email,
-            value: 'info@rajhholding.ch',
-            href: 'mailto:info@rajhholding.ch',
+            value: 'info@rbrajhholding.ch',
+            href: 'mailto:info@rbrajhholding.ch',
         },
         {
             icon: Phone,
