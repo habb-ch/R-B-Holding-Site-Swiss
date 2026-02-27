@@ -17,6 +17,7 @@ export default function Footer({ locale }: FooterProps) {
         { name: 'Leuta Korrosionsschutz AG', href: 'https://leutakorrosionsschutz.ch' },
         { name: 'R&B Guest House', href: 'https://rbguesthouse.ch' },
         { name: 'DoubleA Solutions GmbH', href: 'https://doubleasolutions.ch' },
+        { name: 'Habb.ch', href: 'https://habb.ch' }
     ];
 
     const navLinks = [
