@@ -19,7 +19,7 @@ export default function Contact({ locale }: ContactProps) {
         const body = encodeURIComponent(
             `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
         );
-        window.location.href = `mailto:info@rajhholding.ch?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:info@rbrajhholding.ch?subject=${subject}&body=${body}`;
         setSent(true);
         setTimeout(() => setSent(false), 5000);
     };
