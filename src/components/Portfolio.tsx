@@ -101,7 +101,7 @@ export default function Portfolio({ locale }: PortfolioProps) {
                                         </div>
                                         <div>
                                             <h3
-                                                className="text-[#111318] font-bold text-sm leading-snug"
+                                                className="text-primary font-bold text-sm leading-snug"
                                                 style={{ fontFamily: 'Outfit, sans-serif' }}
                                             >
                                                 {company.name}

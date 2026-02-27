@@ -82,14 +82,14 @@ export default function Navbar({ locale, onLocaleChange }: NavbarProps) {
                 <div className="flex items-center gap-3">
                     {/* Language Toggle */}
                     <div className="flex items-center gap-0.5 bg-[#EEF1F8] border border-[rgba(140,160,200,0.25)] rounded-full p-1">
-                        <Globe size={12} className="text-[#8CA0C8] mx-1.5" />
+                        <Globe size={12} className="text-accent mx-1.5" />
                         {(['de', 'en'] as Locale[]).map((lang) => (
                             <button
                                 key={lang}
                                 onClick={() => onLocaleChange(lang)}
                                 className={`px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${locale === lang
                                     ? 'bg-[#111318] text-white'
-                                    : 'text-[#6B7A96] hover:text-[#111318]'
+                                    : 'text-sub hover:text-primary'
                                     }`}
                                 id={`lang-${lang}`}
                             >

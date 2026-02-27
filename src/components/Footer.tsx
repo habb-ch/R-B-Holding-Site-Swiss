@@ -49,18 +49,18 @@ export default function Footer({ locale }: FooterProps) {
                             </div>
                             <div>
                                 <h3
-                                    className="gradient-silver font-bold text-sm"
+                                    className="gradient-silver font-bold text-sm text-primary"
                                     style={{ fontFamily: 'Outfit, sans-serif' }}
                                 >
                                     R&B Rajh Holding AG
                                 </h3>
-                                <p className="text-[#8CA0C8] text-xs flex items-center gap-1 mt-0.5">
+                                <p className="text-accent text-xs flex items-center gap-1 mt-0.5">
                                     <MapPin size={9} />
                                     Burgdorf, Switzerland
                                 </p>
                             </div>
                         </div>
-                        <p className="text-[#6B7A96] text-sm leading-relaxed max-w-xs mb-5">
+                        <p className="text-sub text-sm leading-relaxed max-w-xs mb-5">
                             {t.tagline}
                         </p>
                         {/* Partner logos */}
@@ -87,7 +87,7 @@ export default function Footer({ locale }: FooterProps) {
                     {/* Navigation */}
                     <div>
                         <h4
-                            className="text-[#8CA0C8] font-bold text-xs mb-4 uppercase tracking-widest"
+                            className="text-accent font-bold text-xs mb-4 uppercase tracking-widest"
                             style={{ fontFamily: 'Outfit, sans-serif' }}
                         >
                             {locale === 'de' ? 'Navigation' : 'Navigation'}
@@ -97,7 +97,7 @@ export default function Footer({ locale }: FooterProps) {
                                 <li key={link.href}>
                                     <button
                                         onClick={() => scrollTo(link.href)}
-                                        className="text-[#6B7A96] hover:text-[#111318] text-sm transition-colors text-left font-medium"
+                                        className="text-sub hover:text-primary text-sm transition-colors text-left font-medium"
                                     >
                                         {link.label}
                                     </button>
@@ -109,7 +109,7 @@ export default function Footer({ locale }: FooterProps) {
                     {/* Portfolio */}
                     <div>
                         <h4
-                            className="text-[#8CA0C8] font-bold text-xs mb-4 uppercase tracking-widest"
+                            className="text-accent font-bold text-xs mb-4 uppercase tracking-widest"
                             style={{ fontFamily: 'Outfit, sans-serif' }}
                         >
                             Portfolio
@@ -121,11 +121,11 @@ export default function Footer({ locale }: FooterProps) {
                                         href={link.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-1.5 text-[#6B7A96] hover:text-[#111318] text-sm transition-colors group font-medium"
+                                        className="flex items-center gap-1.5 text-sub hover:text-primary text-sm transition-colors group font-medium"
                                     >
                                         <ExternalLink
                                             size={10}
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity text-[#8CA0C8]"
+                                            className="opacity-0 group-hover:opacity-100 transition-opacity text-accent"
                                         />
                                         {link.name}
                                     </a>
@@ -138,10 +138,10 @@ export default function Footer({ locale }: FooterProps) {
                 {/* Bottom bar */}
                 <div className="divider-gold mb-6" />
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <p className="text-[#8CA0C8] text-xs">
+                    <p className="text-accent text-xs">
                         © {year} R&B Rajh Holding AG. {t.rights}
                     </p>
-                    <p className="text-[#8CA0C8] text-xs">
+                    <p className="text-accent text-xs">
                         {locale === 'de'
                             ? 'Eingetragen im Handelsregister · Burgdorf, Kanton Bern, CH'
                             : 'Registered in the commercial register · Burgdorf, Canton Bern, CH'}

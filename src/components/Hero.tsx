@@ -74,11 +74,11 @@ export default function Hero({ locale }: HeroProps) {
                 </div>
 
                 {/* Heading */}
-                <h1
+                    <h1
                     className="text-5xl sm:text-[4.5rem] lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-5"
                     style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
-                    <span className="text-[#111318]">R&B Rajh</span>
+                    <span className="text-primary">R&B Rajh</span>
                     <br />
                     <span className="gradient-silver">Holding AG</span>
                 </h1>
@@ -87,7 +87,7 @@ export default function Hero({ locale }: HeroProps) {
                 <div className="w-16 h-px bg-[#C9892A] mx-auto mb-5 opacity-70" />
 
                 {/* Tagline */}
-                <p className="text-sm sm:text-base font-bold text-[#3A5A90] mb-5 tracking-[0.1em] uppercase">
+                <p className="text-sm sm:text-base font-bold text-accent mb-5 tracking-[0.1em] uppercase">
                     {t.hero.tagline}
                 </p>
 
@@ -123,7 +123,7 @@ export default function Hero({ locale }: HeroProps) {
                                 }`}
                         >
                             <span className="stat-number">{stat.value}</span>
-                            <span className="text-xs text-[#5A7AB8] uppercase tracking-[0.18em] font-bold">
+                            <span className="text-xs text-accent uppercase tracking-[0.18em] font-bold">
                                 {stat.label}
                             </span>
                         </div>

@@ -51,10 +51,10 @@ export default function Contact({ locale }: ContactProps) {
 
             <div className="max-w-7xl mx-auto px-6 pt-10">
                 {/* Header */}
-                <div className="text-center mb-16">
+                    <div className="text-center mb-16">
                     <span className="section-label block mb-4">{t.title}</span>
                     <h2
-                        className="text-4xl sm:text-5xl font-bold text-[#111318] mb-4"
+                        className="text-4xl sm:text-5xl font-bold text-primary mb-4"
                         style={{ fontFamily: 'Outfit, sans-serif' }}
                     >
                         {t.subtitle}
@@ -67,12 +67,12 @@ export default function Contact({ locale }: ContactProps) {
                     <div className="flex flex-col gap-5">
                         <div>
                             <h3
-                                className="text-[#111318] font-bold text-2xl mb-3"
+                                className="text-primary font-bold text-2xl mb-3"
                                 style={{ fontFamily: 'Outfit, sans-serif' }}
                             >
                                 R&B Rajh Holding AG
                             </h3>
-                            <p className="text-[#6B7A96] text-base leading-relaxed">
+                            <p className="text-sub text-base leading-relaxed">
                                 {locale === 'de'
                                     ? 'Haben Sie Fragen zu unseren Beteiligungen oder Partnerschaftsmöglichkeiten? Wir freuen uns von Ihnen zu hören.'
                                     : 'Have questions about our portfolio or partnership opportunities? We look forward to hearing from you.'}
@@ -89,13 +89,13 @@ export default function Contact({ locale }: ContactProps) {
                                 id={`contact-info-${i}`}
                             >
                                 <div className="w-10 h-10 rounded-xl bg-[#EEF1F8] border border-[rgba(140,160,200,0.2)] flex items-center justify-center flex-shrink-0">
-                                    <info.icon size={16} className="text-[#8CA0C8]" />
+                                    <info.icon size={16} className="text-accent" />
                                 </div>
                                 <div>
-                                    <p className="text-[#8CA0C8] text-xs uppercase tracking-wider mb-0.5 font-semibold">
+                                    <p className="text-accent text-xs uppercase tracking-wider mb-0.5 font-semibold">
                                         {info.label}
                                     </p>
-                                    <p className="text-[#111318] text-sm font-semibold group-hover:text-[#8CA0C8] transition-colors">
+                                    <p className="text-primary text-sm font-semibold group-hover:text-accent transition-colors">
                                         {info.value}
                                     </p>
                                 </div>
@@ -104,11 +104,11 @@ export default function Contact({ locale }: ContactProps) {
 
                         {/* Registry note */}
                         <div className="p-4 rounded-xl border border-[rgba(140,160,200,0.2)] bg-white">
-                            <p className="text-xs text-[#8CA0C8] uppercase tracking-wider mb-1 font-semibold">
+                            <p className="text-accent text-xs uppercase tracking-wider mb-1 font-semibold">
                                 {locale === 'de' ? 'Handelsregistereintrag' : 'Commercial Registry'}
                             </p>
-                            <p className="text-[#111318] text-sm font-semibold">CHE — Burgdorf, Kanton Bern</p>
-                            <p className="text-[#6B7A96] text-xs mt-0.5">
+                            <p className="text-primary text-sm font-semibold">CHE — Burgdorf, Kanton Bern</p>
+                            <p className="text-sub text-xs mt-0.5">
                                 {locale === 'de'
                                     ? 'Aktiengesellschaft · Eingetragen 12.03.2019'
                                     : 'Corporation (AG) · Registered 12.03.2019'}
@@ -121,10 +121,10 @@ export default function Contact({ locale }: ContactProps) {
                         {sent ? (
                             <div className="flex flex-col items-center justify-center gap-4 py-12">
                                 <CheckCircle size={44} className="text-[#C9892A]" />
-                                <p className="text-[#111318] font-semibold text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                <p className="text-primary font-semibold text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>
                                     {locale === 'de' ? 'Nachricht gesendet!' : 'Message Sent!'}
                                 </p>
-                                <p className="text-[#6B7A96] text-sm text-center">
+                                <p className="text-sub text-sm text-center">
                                     {locale === 'de'
                                         ? 'Wir werden uns bald bei Ihnen melden.'
                                         : 'We will get back to you soon.'}
@@ -133,7 +133,7 @@ export default function Contact({ locale }: ContactProps) {
                         ) : (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                                 <div>
-                                    <label className="block text-xs text-[#6B7A96] font-semibold uppercase tracking-wider mb-2">
+                                    <label className="block text-xs text-sub font-semibold uppercase tracking-wider mb-2">
                                         {t.name}
                                     </label>
                                     <input
@@ -147,7 +147,7 @@ export default function Contact({ locale }: ContactProps) {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs text-[#6B7A96] font-semibold uppercase tracking-wider mb-2">
+                                    <label className="block text-xs text-sub font-semibold uppercase tracking-wider mb-2">
                                         {t.emailLabel}
                                     </label>
                                     <input
@@ -161,7 +161,7 @@ export default function Contact({ locale }: ContactProps) {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs text-[#6B7A96] font-semibold uppercase tracking-wider mb-2">
+                                    <label className="block text-xs text-sub font-semibold uppercase tracking-wider mb-2">
                                         {t.message}
                                     </label>
                                     <textarea

@@ -45,13 +45,13 @@ export default function About({ locale }: AboutProps) {
                         {locale === 'de' ? 'Über uns' : 'About Us'}
                     </span>
                     <h2
-                        className="text-4xl sm:text-5xl font-bold text-[#111318] mb-4"
+                        className="text-4xl sm:text-5xl font-bold text-primary mb-4"
                         style={{ fontFamily: 'Outfit, sans-serif' }}
                     >
                         {t.title}
                     </h2>
                     <div className="divider-gold max-w-xs mx-auto mb-5" />
-                    <p className="text-[#6B7A96] max-w-2xl mx-auto text-base leading-relaxed">
+                    <p className="text-sub max-w-2xl mx-auto text-base leading-relaxed">
                         {t.description}
                     </p>
                 </div>
@@ -64,7 +64,7 @@ export default function About({ locale }: AboutProps) {
                             <div className="flex items-center gap-4">
                                 <div className="w-14 h-14 rounded-full bg-[#EEF1F8] border border-[rgba(140,160,200,0.25)] flex items-center justify-center flex-shrink-0">
                                     <span
-                                        className="text-xl font-bold text-[#8CA0C8]"
+                                        className="text-xl font-bold text-accent"
                                         style={{ fontFamily: 'Outfit, sans-serif' }}
                                     >
                                         SK
@@ -72,15 +72,15 @@ export default function About({ locale }: AboutProps) {
                                 </div>
                                 <div>
                                     <h3
-                                        className="text-[#111318] font-bold text-base"
+                                        className="text-primary font-bold text-base"
                                         style={{ fontFamily: 'Outfit, sans-serif' }}
                                     >
                                         {t.ceo}
                                     </h3>
-                                    <p className="text-[#8CA0C8] text-sm font-medium">{t.ceoTitle}</p>
+                                    <p className="text-accent text-sm font-medium">{t.ceoTitle}</p>
                                 </div>
                             </div>
-                            <p className="text-[#6B7A96] text-sm leading-relaxed border-l-2 border-[#8CA0C8] pl-4">
+                            <p className="text-sub text-sm leading-relaxed border-l-2 border-[var(--accent)] pl-4">
                                 {locale === 'de'
                                     ? 'Als Gründer und Geschäftsführer der R&B Rajh Holding AG leitet Suyarajh Kanagaratnam das Unternehmen seit seiner Gründung im Jahr 2019 und baut ein Portfolio von starken Industrieunternehmen auf.'
                                     : 'As founder and managing director of R&B Rajh Holding AG, Suyarajh Kanagaratnam has led the company since its founding in 2019, building a portfolio of strong industrial businesses.'}
@@ -90,7 +90,7 @@ export default function About({ locale }: AboutProps) {
                         {/* Company details */}
                         <div className="glass-card p-5">
                             <h4
-                                className="text-[#8CA0C8] font-bold mb-4 text-xs uppercase tracking-widest"
+                                className="text-accent font-bold mb-4 text-xs uppercase tracking-widest"
                                 style={{ fontFamily: 'Outfit, sans-serif' }}
                             >
                                 {locale === 'de' ? 'Unternehmensdetails' : 'Company Details'}
@@ -101,10 +101,10 @@ export default function About({ locale }: AboutProps) {
                                         key={i}
                                         className="flex items-start gap-3 p-3 rounded-xl bg-[#F5F7FB] border border-[rgba(140,160,200,0.15)]"
                                     >
-                                        <d.icon size={14} className="text-[#8CA0C8] flex-shrink-0 mt-0.5" />
+                                        <d.icon size={14} className="text-accent flex-shrink-0 mt-0.5" />
                                         <div>
-                                            <p className="text-[#8CA0C8] text-xs uppercase tracking-wider mb-0.5 font-semibold">{d.label}</p>
-                                            <p className="text-[#111318] text-sm font-semibold">{d.value}</p>
+                                            <p className="text-accent text-xs uppercase tracking-wider mb-0.5 font-semibold">{d.label}</p>
+                                            <p className="text-primary text-sm font-semibold">{d.value}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -137,7 +137,7 @@ export default function About({ locale }: AboutProps) {
                     {/* Right column */}
                     <div className="flex flex-col gap-5">
                         <h3
-                            className="text-[#111318] font-bold text-xl"
+                            className="text-primary font-bold text-xl"
                             style={{ fontFamily: 'Outfit, sans-serif' }}
                         >
                             {t.subtitle}
@@ -160,7 +160,7 @@ export default function About({ locale }: AboutProps) {
                                     >
                                         {pillar.title}
                                     </h4>
-                                    <p className="text-[#6B7A96] text-sm leading-relaxed">{pillar.text}</p>
+                                    <p className="text-sub text-sm leading-relaxed">{pillar.text}</p>
                                 </div>
                             </div>
                         ))}
@@ -168,12 +168,12 @@ export default function About({ locale }: AboutProps) {
                         {/* Corporate purpose */}
                         <div className="glass-card p-6">
                             <h4
-                                className="text-[#8CA0C8] font-bold mb-3 text-xs uppercase tracking-widest"
-                                style={{ fontFamily: 'Outfit, sans-serif' }}
-                            >
+                                    className="text-accent font-bold mb-3 text-xs uppercase tracking-widest"
+                                    style={{ fontFamily: 'Outfit, sans-serif' }}
+                                >
                                 {locale === 'de' ? 'Gesellschaftszweck' : 'Corporate Purpose'}
                             </h4>
-                            <p className="text-[#6B7A96] text-sm leading-relaxed">
+                            <p className="text-sub text-sm leading-relaxed">
                                 {locale === 'de'
                                     ? 'Direkte oder indirekte Beteiligung an verschiedenen Unternehmen, Erwerb und Übertragung von Wertpapieren, Mobilien und Immobilien. Das Unternehmen kann Zweigniederlassungen und Tochtergesellschaften gründen und sich an verwandten kaufmännischen und finanziellen Tätigkeiten beteiligen.'
                                     : 'Direct or indirect participation in various businesses, acquisition and transfer of securities, movables, and real estate. The company may establish branches and subsidiaries and engage in related commercial and financial activities.'}
