@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "R&B Rajh Holding AG – Strategische Investitionen & Industrielle Exzellenz",
+  title:
+    "R&B Rajh Holding AG – Strategische Investitionen & Industrielle Exzellenz",
   description:
     "R&B Rajh Holding AG ist eine Schweizer Holdinggesellschaft mit Sitz in Burgdorf. Mit strategischen Beteiligungen in Industrie, Oberflächenbehandlung, Gastgewerbe und Landwirtschaft.",
   keywords: [
@@ -13,10 +14,17 @@ export const metadata: Metadata = {
     "Leuta Korrosionsschutz",
     "Swiss holding company",
   ],
+  metadataBase: new URL("https://rbrajhholding.ch"),
+  icons: {
+    icon: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+    shortcut: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+    apple: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+  },
   openGraph: {
     title: "R&B Rajh Holding AG",
     description: "Strategische Investitionen. Industrielle Exzellenz.",
     type: "website",
+    url: "https://rbrajhholding.ch",
   },
 };
 
@@ -29,7 +37,11 @@ export default function RootLayout({
     <html lang="de">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
