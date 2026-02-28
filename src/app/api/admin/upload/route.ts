@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getSupabase } from "@/lib/supabase";
 
-const IMGBB_API_KEY = "5200f27c34683513ab60c7eaf8938056";
-
 // Helper to verify admin session
 async function verifySession() {
   const cookieStore = await cookies();
@@ -43,8 +41,16 @@ export async function POST(request: NextRequest) {
     const base64Image = buffer.toString("base64");
 
     // Upload to ImageBB
+    const imgbbApiKey = process.env.IMGBB_API_KEY;
+    if (!imgbbApiKey) {
+      return NextResponse.json(
+        { error: "ImageBB API key not configured" },
+        { status: 500 },
+      );
+    }
+
     const imgbbFormData = new FormData();
-    imgbbFormData.append("key", IMGBB_API_KEY);
+    imgbbFormData.append("key", imgbbApiKey);
     imgbbFormData.append("image", base64Image);
 
     const response = await fetch("https://api.imgbb.com/1/upload", {
