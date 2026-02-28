@@ -1,138 +1,91 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
 import { translations, Locale } from '@/lib/i18n';
+import { Handshake, ExternalLink } from 'lucide-react';
+import Reveal from './Reveal';
 
 interface PartnersProps {
     locale: Locale;
 }
 
+const partnerData = [
+    {
+        key: 'doubleA' as const,
+        logo: '/logos/DoubleA_SolarIT_Solutions.png',
+    },
+    {
+        key: 'habb' as const,
+        logo: '/logos/HABB_ch_Logo.png',
+    },
+];
+
 export default function Partners({ locale }: PartnersProps) {
     const t = translations[locale];
 
-    const partners = [
-        {
-            key: 'doubleA',
-            logo: '/logos/DoubleA_SolarIT_Solutions.png',
-            data: t.partners.doubleA,
-            tags:
-                locale === 'de'
-                    ? ['Photovoltaik', 'IT-Lösungen', 'SaaS', 'Solar']
-                    : ['Photovoltaic', 'IT Solutions', 'SaaS', 'Solar'],
-            accentColor: '#8CA0C8',
-        },
-        {
-            key: 'habb',
-            logo: '/logos/HABB_ch_Logo.png',
-            data: t.partners.habb,
-            tags:
-                locale === 'de'
-                    ? ['Business', 'Digital', 'Schweiz']
-                    : ['Business', 'Digital', 'Switzerland'],
-            accentColor: '#C9892A',
-        },
-    ];
-
     return (
-        <section id="partners" className="relative py-28 overflow-hidden bg-white">
-            <div className="divider-gold" />
-
-            <div className="max-w-7xl mx-auto px-6 pt-10">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <span className="section-label block mb-4">
-                        {locale === 'de' ? 'Strategische Partner' : 'Strategic Partners'}
-                    </span>
-                    <h2
-                        className="text-4xl sm:text-5xl font-bold text-primary mb-4"
-                        style={{ fontFamily: 'Outfit, sans-serif' }}
-                    >
-                        {t.partners.title}
-                    </h2>
-                    <div className="divider-gold max-w-xs mx-auto mb-5" />
-                    <p className="text-sub max-w-md mx-auto text-base">
-                        {t.partners.subtitle}
-                    </p>
-                </div>
-
-                {/* Partners */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 max-w-4xl mx-auto">
-                    {partners.map((partner) => (
-                        <div
-                            key={partner.key}
-                            className="partner-card p-8 flex flex-col gap-5 relative overflow-hidden"
-                            id={`partner-${partner.key}`}
+        <section id="partners" className="relative py-28 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+                {/* Section Header */}
+                <Reveal>
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <span className="section-badge mb-4 inline-flex">
+                            <Handshake size={12} />
+                            {t.partners.title}
+                        </span>
+                        <h2
+                            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[var(--text-heading)] mb-5 tracking-tight"
+                            style={{ fontFamily: 'Outfit, sans-serif' }}
                         >
-                            {/* Top accent */}
-                            <div
-                                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
-                                style={{
-                                    background: `linear-gradient(90deg, transparent, ${partner.accentColor}80, transparent)`,
-                                }}
-                            />
+                            {t.partners.title}
+                        </h2>
+                        <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed">
+                            {t.partners.subtitle}
+                        </p>
+                    </div>
+                </Reveal>
 
-                            {/* Logo + name */}
-                            <div className="flex items-center gap-4">
-                                <div className="relative w-14 h-14 bg-[#F5F7FB] rounded-xl overflow-hidden border border-[rgba(140,160,200,0.2)] flex-shrink-0 p-1.5">
-                                    <Image
-                                        src={partner.logo}
-                                        alt={partner.data.name}
-                                        fill
-                                        className="object-contain p-0.5"
-                                    />
-                                </div>
-                                <div>
-                                    <h3
-                                        className="text-primary font-bold text-base leading-tight"
-                                        style={{ fontFamily: 'Outfit, sans-serif' }}
-                                    >
-                                        {partner.data.name}
+                {/* Partner Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    {partnerData.map((partner, index) => {
+                        const data = t.partners[partner.key];
+                        return (
+                            <Reveal key={partner.key} delay={index * 120}>
+                                <div className="card p-8 h-full flex flex-col items-center text-center group">
+                                    {/* Logo with grayscale effect */}
+                                    <div className="w-full h-28 flex items-center justify-center mb-6">
+                                        <Image
+                                            src={partner.logo}
+                                            alt={data.name}
+                                            width={200}
+                                            height={80}
+                                            className="object-contain max-h-16 grayscale opacity-60 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100"
+                                        />
+                                    </div>
+
+                                    <div className="h-px w-12 bg-[var(--border-light)] mb-6 group-hover:bg-[var(--gold)] group-hover:w-16 transition-all duration-500" />
+
+                                    <h3 className="text-xl font-bold text-[var(--text-heading)] mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                                        {data.name}
                                     </h3>
-                                    <span className="text-xs font-bold uppercase tracking-[0.15em] text-accent" style={{ color: partner.accentColor }}>
-                                        {locale === 'de' ? 'Strategischer Partner' : 'Strategic Partner'}
-                                    </span>
-                                </div>
-                            </div>
 
-                            {/* Description */}
-                            <p className="text-sub text-sm leading-relaxed">
-                                {partner.data.description}
-                            </p>
+                                    <p className="text-sm text-[var(--text-body)] leading-relaxed mb-6 flex-1">
+                                        {data.description}
+                                    </p>
 
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2">
-                                {partner.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide"
-                                        style={{
-                                            background: `${partner.accentColor}12`,
-                                            border: `1px solid ${partner.accentColor}30`,
-                                            color: partner.accentColor,
-                                        }}
+                                    <a
+                                        href={data.website}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--royal-light)] hover:text-[var(--navy)] transition-colors group/link"
                                     >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {/* Link */}
-                            <a
-                                href={partner.data.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-colors group/link text-accent hover:text-primary"
-                                id={`partner-link-${partner.key}`}
-                            >
-                                <ArrowUpRight
-                                    size={14}
-                                    className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform"
-                                />
-                                {partner.data.website.replace('https://', '')}
-                            </a>
-                        </div>
-                    ))}
+                                        {t.portfolio.visitWebsite}
+                                        <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-0.5" />
+                                    </a>
+                                </div>
+                            </Reveal>
+                        );
+                    })}
                 </div>
             </div>
         </section>

@@ -98,6 +98,10 @@ export const translations = {
                 website: 'https://habb.ch',
             },
         },
+        team: {
+            title: 'Unser Team',
+            subtitle: 'Die Menschen hinter unserem Erfolg.',
+        },
         about: {
             title: 'Über R&B Rajh Holding AG',
             subtitle: 'Eine Holdinggesellschaft mit Vision und Stärke',
@@ -233,6 +237,10 @@ export const translations = {
                     'Strategic Swiss partner for business development, digital networking, and innovative solutions in the Swiss market.',
                 website: 'https://habb.ch',
             },
+        },
+        team: {
+            title: 'Our Team',
+            subtitle: 'The people behind our success.',
         },
         about: {
             title: 'About R&B Rajh Holding AG',

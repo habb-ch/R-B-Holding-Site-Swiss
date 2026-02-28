@@ -13,10 +13,12 @@ export const metadata: Metadata = {
     "Leuta Korrosionsschutz",
     "Swiss holding company",
   ],
+  metadataBase: new URL("https://rbrajhholding.ch"),
   openGraph: {
     title: "R&B Rajh Holding AG",
     description: "Strategische Investitionen. Industrielle Exzellenz.",
     type: "website",
+    url: "https://rbrajhholding.ch",
   },
 };
 
