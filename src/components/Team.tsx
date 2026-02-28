@@ -81,12 +81,12 @@ export default function Team({ locale }: TeamProps) {
         </Reveal>
 
         {/* Team Cards */}
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
           {teamMembers.map((member, index) => (
             <Reveal key={member.id} delay={index * 100}>
-              <div className="card p-6 h-full flex flex-col items-center text-center group w-[280px]">
+              <div className="card p-3 sm:p-6 h-full flex flex-col items-center text-center group w-full">
                 {/* Profile Image */}
-                <div className="relative w-32 h-32 mb-6 rounded-full overflow-hidden bg-[var(--bg-cream)] border-4 border-[var(--border-light)] group-hover:border-[var(--gold)] transition-all duration-500">
+                <div className="relative w-20 h-20 sm:w-32 sm:h-32 mb-3 sm:mb-6 rounded-full overflow-hidden bg-[var(--bg-cream)] border-2 sm:border-4 border-[var(--border-light)] group-hover:border-[var(--gold)] transition-all duration-500">
                   {member.image_url ? (
                     <Image
                       src={member.image_url}
@@ -102,21 +102,21 @@ export default function Team({ locale }: TeamProps) {
                   )}
                 </div>
 
-                <div className="h-px w-12 bg-[var(--border-light)] mb-4 group-hover:bg-[var(--gold)] group-hover:w-16 transition-all duration-500" />
+                <div className="h-px w-8 sm:w-12 bg-[var(--border-light)] mb-2 sm:mb-4 group-hover:bg-[var(--gold)] group-hover:w-12 sm:group-hover:w-16 transition-all duration-500" />
 
                 <h3
-                  className="text-lg font-bold text-[var(--text-heading)] mb-1"
+                  className="text-sm sm:text-lg font-bold text-[var(--text-heading)] mb-1"
                   style={{ fontFamily: "Outfit, sans-serif" }}
                 >
                   {member.name}
                 </h3>
 
-                <p className="text-sm font-medium text-[var(--royal-light)] mb-1">
+                <p className="text-xs sm:text-sm font-medium text-[var(--royal-light)] mb-1">
                   {member.role}
                 </p>
 
                 {member.company && (
-                  <p className="text-xs text-[var(--text-muted)]">
+                  <p className="text-[10px] sm:text-xs text-[var(--text-muted)]">
                     {member.company}
                   </p>
                 )}
