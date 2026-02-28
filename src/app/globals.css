@@ -3,44 +3,48 @@
 @layer base {
   :root {
     /* ── Primary ── */
-    --navy: #0B1F3F;
+    --navy: #0b1f3f;
     --navy-deep: #071428;
-    --navy-light: #152D54;
-    --royal: #1A3A6B;
-    --royal-light: #2B5EA0;
-    --sky: #3B7DD8;
+    --navy-light: #152d54;
+    --royal: #1a3a6b;
+    --royal-light: #2b5ea0;
+    --sky: #3b7dd8;
 
     /* ── Neutrals ── */
-    --white: #FFFFFF;
-    --off-white: #F7F8FC;
-    --light-bg: #EFF2F8;
-    --border-light: #E2E6F0;
-    --gray-100: #F1F3F8;
-    --gray-200: #E4E8F0;
-    --gray-300: #CDD3E0;
-    --gray-400: #9BA5B8;
-    --gray-500: #6B7A8D;
-    --gray-600: #4A5568;
-    --gray-700: #2D3748;
-    --gray-800: #1A202C;
+    --white: #ffffff;
+    --off-white: #f7f8fc;
+    --light-bg: #eff2f8;
+    --border-light: #e2e6f0;
+    --gray-100: #f1f3f8;
+    --gray-200: #e4e8f0;
+    --gray-300: #cdd3e0;
+    --gray-400: #9ba5b8;
+    --gray-500: #6b7a8d;
+    --gray-600: #4a5568;
+    --gray-700: #2d3748;
+    --gray-800: #1a202c;
 
     /* ── Accent ── */
-    --gold: #C8982C;
-    --gold-light: #D4A94A;
-    --gold-dark: #A67B1A;
+    --gold: #c8982c;
+    --gold-light: #d4a94a;
+    --gold-dark: #a67b1a;
 
     /* ── Text ── */
-    --text-heading: #0B1F3F;
+    --text-heading: #0b1f3f;
     --text-body: #374151;
-    --text-muted: #6B7A8D;
-    --text-light: #9BA5B8;
+    --text-muted: #6b7a8d;
+    --text-light: #9ba5b8;
 
     /* ── Borders & Shadows ── */
     --border: rgba(11, 31, 63, 0.08);
-    --shadow-sm: 0 1px 3px rgba(11, 31, 63, 0.06), 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 16px rgba(11, 31, 63, 0.08), 0 2px 4px rgba(0,0,0,0.04);
-    --shadow-lg: 0 12px 40px rgba(11, 31, 63, 0.1), 0 4px 12px rgba(0,0,0,0.05);
-    --shadow-xl: 0 20px 60px rgba(11, 31, 63, 0.12), 0 8px 20px rgba(0,0,0,0.06);
+    --shadow-sm:
+      0 1px 3px rgba(11, 31, 63, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md:
+      0 4px 16px rgba(11, 31, 63, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-lg:
+      0 12px 40px rgba(11, 31, 63, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-xl:
+      0 20px 60px rgba(11, 31, 63, 0.12), 0 8px 20px rgba(0, 0, 0, 0.06);
   }
 
   * {
@@ -55,13 +59,18 @@
     background-color: var(--white);
     color: var(--text-body);
     overflow-x: hidden;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", sans-serif;
     color: var(--text-heading);
   }
 
@@ -83,7 +92,12 @@
 @layer components {
   /* ── Gradient Heading ── */
   .gradient-heading {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--royal-light) 60%, var(--sky) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--navy) 0%,
+      var(--royal-light) 60%,
+      var(--sky) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -115,7 +129,7 @@
     border-radius: 10px;
     padding: 14px 32px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     letter-spacing: 0.01em;
     cursor: pointer;
     border: none;
@@ -138,7 +152,7 @@
     border-radius: 10px;
     padding: 14px 32px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     cursor: pointer;
     background: var(--white);
     font-size: 0.9rem;
@@ -159,7 +173,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--royal-light);
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     padding: 6px 16px;
     border-radius: 100px;
     border: 1px solid rgba(27, 58, 107, 0.12);
@@ -190,7 +204,7 @@
     display: inline-block;
   }
   .animated-underline::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -206,7 +220,7 @@
 
   /* ── Stat Number ── */
   .stat-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--navy);
@@ -222,7 +236,7 @@
     padding: 14px 16px;
     width: 100%;
     transition: all 0.25s ease;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 0.9rem;
   }
   .input-field:focus {
@@ -237,12 +251,22 @@
 
 /* ── Viewport animations ── */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-up {

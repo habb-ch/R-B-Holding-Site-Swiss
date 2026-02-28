@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Locale } from '@/lib/i18n';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import Portfolio from '@/components/Portfolio';
-import Partners from '@/components/Partners';
-import Team from '@/components/Team';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import { useState } from "react";
+import { Locale } from "@/lib/i18n";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Portfolio from "@/components/Portfolio";
+import Partners from "@/components/Partners";
+import Team from "@/components/Team";
+import About from "@/components/About";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>('de');
+  const [locale, setLocale] = useState<Locale>("de");
 
   return (
     <main className="min-h-screen bg-white">

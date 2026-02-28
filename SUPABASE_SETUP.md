@@ -1,14 +1,18 @@
 # Supabase Setup Instructions
 
 ## 1. Create Supabase Project
+
 Go to [supabase.com](https://supabase.com) and create a new project.
 
 ## 2. Get Credentials
+
 After creating the project, go to **Settings > API** and copy:
+
 - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
 - **anon/public key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
 ## 3. Update `.env.local`
+
 Update the `.env.local` file with your Supabase credentials:
 
 ```env
@@ -17,6 +21,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
 ```
 
 ## 4. Create Database Tables
+
 Run the SQL from `supabase-setup.sql` in Supabase SQL Editor:
 
 1. Go to **Database > SQL Editor** in Supabase Dashboard
@@ -24,12 +29,14 @@ Run the SQL from `supabase-setup.sql` in Supabase SQL Editor:
 3. Paste and click **Run**
 
 This will create:
+
 - `teams` table - For team member management
 - `contact_submissions` table - For contact form submissions
 - Row Level Security policies
 - Required indexes
 
 ## 5. Create Admin User
+
 Go to **Authentication > Users** in Supabase dashboard:
 
 1. Click **Add User** > **Create New User**
@@ -41,6 +48,7 @@ Go to **Authentication > Users** in Supabase dashboard:
    - OR go to **Authentication > Settings** and disable "Confirm email"
 
 ## 6. Test the Setup
+
 1. Run `npm run dev`
 2. Visit `http://localhost:3000/admin`
 3. Login with admin credentials
@@ -51,6 +59,7 @@ Go to **Authentication > Users** in Supabase dashboard:
 ## Features
 
 ### Contact Form Submissions
+
 - Public visitors can submit contact forms
 - Submissions are stored in Supabase
 - Admin can view all submissions with pagination
@@ -58,19 +67,23 @@ Go to **Authentication > Users** in Supabase dashboard:
 - Quick reply via email link
 
 ### Team Management
+
 - Add team members with name, role, and photo URL
 - Control display order
 - Edit and delete team members
 - Displayed on the main website under "Our Team" section
 
 ## Admin Credentials
+
 Default credentials for this setup:
+
 - **Email**: `admin@rbrajhholding.ch`
 - **Password**: `RBHolding2024!`
 
 ⚠️ **Important**: Change these credentials after first login for production!
 
 ## Security Notes
+
 - Row Level Security (RLS) is enabled on all tables
 - Only authenticated users can manage data
 - Public users can only:
