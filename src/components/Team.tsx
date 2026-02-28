@@ -66,16 +66,16 @@ export default function Team({ locale }: TeamProps) {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="section-badge mb-4 inline-flex">
               <Users size={12} />
-              {t.team?.title || "Unser Team"}
+              {t.team?.title || "Führung der Gruppe"}
             </span>
             <h2
               className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[var(--text-heading)] mb-5 tracking-tight"
               style={{ fontFamily: "Outfit, sans-serif" }}
             >
-              {t.team?.title || "Unser Team"}
+              {t.team?.title || "Führung der Gruppe"}
             </h2>
             <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed">
-              {t.team?.subtitle || "Die Menschen hinter unserem Erfolg."}
+              {t.team?.subtitle || "Leitung der Beteiligungsgesellschaften und strategische Partner"}
             </p>
           </div>
         </Reveal>

@@ -99,8 +99,8 @@ export const translations = {
       },
     },
     team: {
-      title: "Unser Team",
-      subtitle: "Die Menschen hinter unserem Erfolg.",
+      title: "Führung der Gruppe",
+      subtitle: "Leitung der Beteiligungsgesellschaften und strategische Partner",
     },
     about: {
       title: "Über R&B Rajh Holding AG",
