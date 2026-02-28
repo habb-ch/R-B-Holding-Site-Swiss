@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     "Swiss holding company",
   ],
   metadataBase: new URL("https://rbrajhholding.ch"),
+  icons: {
+    icon: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+    shortcut: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+    apple: "/logos/RAndB_Rajh_Holding_AG_Logo.png",
+  },
   openGraph: {
     title: "R&B Rajh Holding AG",
     description: "Strategische Investitionen. Industrielle Exzellenz.",
