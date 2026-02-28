@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { translations, Locale } from '@/lib/i18n';
 import { MapPin, ChevronDown } from 'lucide-react';
+import Logo from './Logo';
 
 interface HeroProps {
     locale: Locale;
@@ -62,15 +62,7 @@ export default function Hero({ locale }: HeroProps) {
 
                 {/* Logo */}
                 <div className="flex justify-center mb-10">
-                    <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-[rgba(90,122,184,0.2)] bg-white shadow-lg">
-                        <Image
-                            src="/logos/RAndB_Rajh_Holding_AG_Logo.png"
-                            alt="R&B Rajh Holding AG Logo"
-                            fill
-                            className="object-contain p-3"
-                            priority
-                        />
-                    </div>
+                    <Logo size={136} />
                 </div>
 
                 {/* Heading */}

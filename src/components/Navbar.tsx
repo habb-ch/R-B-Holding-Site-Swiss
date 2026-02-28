@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { translations, Locale } from '@/lib/i18n';
 import { Menu, X, Globe } from 'lucide-react';
+import Logo from './Logo';
 
 interface NavbarProps {
     locale: Locale;
@@ -48,14 +48,7 @@ export default function Navbar({ locale, onLocaleChange }: NavbarProps) {
                     className="flex items-center gap-3 group"
                     id="nav-logo"
                 >
-                    <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-[rgba(140,160,200,0.25)] bg-white shadow-sm">
-                        <Image
-                            src="/logos/RAndB_Rajh_Holding_AG_Logo.png"
-                            alt="R&B Rajh Holding AG"
-                            fill
-                            className="object-contain p-1"
-                        />
-                    </div>
+                    <Logo size={36} />
                     <span
                         className="hidden sm:block font-semibold text-sm text-primary tracking-wide"
                         style={{ fontFamily: 'Outfit, sans-serif' }}
