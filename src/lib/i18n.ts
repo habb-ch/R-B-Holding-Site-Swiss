@@ -243,7 +243,7 @@ export const translations = {
       },
     },
     team: {
-      title: "Our Team",
+      title: "Group Leadership",
       subtitle: "The people behind our success.",
     },
     about: {
