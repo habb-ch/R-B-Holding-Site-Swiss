@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { verifySessionToken, logoutToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 export async function GET() {
@@ -11,21 +11,10 @@ export async function GET() {
       return NextResponse.json({ authenticated: false });
     }
 
-    const supabase = getSupabase();
+    const user = await verifySessionToken(sessionToken ?? null);
+    if (!user) return NextResponse.json({ authenticated: false });
 
-    // Verify the session with Supabase
-    const { data, error } = await supabase.auth.getUser(sessionToken);
-
-    if (error || !data.user) {
-      return NextResponse.json({ authenticated: false });
-    }
-
-    return NextResponse.json({
-      authenticated: true,
-      user: {
-        email: data.user.email,
-      },
-    });
+    return NextResponse.json({ authenticated: true, user: { email: user.email } });
   } catch (error) {
     console.error("Session check error:", error);
     return NextResponse.json({ authenticated: false });
@@ -35,6 +24,8 @@ export async function GET() {
 export async function DELETE() {
   try {
     const cookieStore = await cookies();
+    const token = cookieStore.get("admin-session")?.value ?? null;
+    await logoutToken(token);
     cookieStore.delete("admin-session");
     return NextResponse.json({ success: true });
   } catch (error) {

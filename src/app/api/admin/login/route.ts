@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { loginWithTable } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
@@ -13,24 +14,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const supabase = getSupabase();
-
-    // Authenticate with Supabase
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 },
-      );
+    // Authenticate using DB table
+    const result = await loginWithTable(email, password);
+    if ((result as any).error || !result.token) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
     // Set session cookie
     const cookieStore = await cookies();
-    cookieStore.set("admin-session", data.session.access_token, {
+    cookieStore.set("admin-session", result.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
@@ -38,12 +30,7 @@ export async function POST(request: NextRequest) {
       path: "/",
     });
 
-    return NextResponse.json({
-      success: true,
-      user: {
-        email: data.user.email,
-      },
-    });
+    return NextResponse.json({ success: true, user: result.user });
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json(

@@ -1,23 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getSupabase } from "@/lib/supabase";
+import { verifySessionToken } from "@/lib/auth";
 
 // Helper to verify admin session
 async function verifySession() {
   const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("admin-session")?.value;
-
-  if (!sessionToken) {
-    return false;
-  }
-
-  try {
-    const supabase = getSupabase();
-    const { data, error } = await supabase.auth.getUser(sessionToken);
-    return !error && !!data.user;
-  } catch {
-    return false;
-  }
+  const sessionToken = cookieStore.get("admin-session")?.value ?? null;
+  const user = await verifySessionToken(sessionToken);
+  return !!user;
 }
 
 // POST - Upload image to ImageBB (admin only)

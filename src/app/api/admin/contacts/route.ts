@@ -1,30 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getSupabase,
-  getAuthenticatedSupabase,
-  getServiceSupabase,
-} from "@/lib/supabase";
+import { getSupabase, getServiceSupabase } from "@/lib/supabase";
+import { verifySessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 // Helper to verify admin session and return token
 async function getSessionToken(): Promise<string | null> {
   const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("admin-session")?.value;
-
-  if (!sessionToken) {
-    return null;
-  }
-
-  try {
-    const supabase = getSupabase();
-    const { data, error } = await supabase.auth.getUser(sessionToken);
-    if (!error && data.user) {
-      return sessionToken;
-    }
-    return null;
-  } catch {
-    return null;
-  }
+  const sessionToken = cookieStore.get("admin-session")?.value ?? null;
+  const user = await verifySessionToken(sessionToken);
+  return user ? sessionToken : null;
 }
 
 // GET - Fetch contact submissions with pagination (admin only)
@@ -40,7 +24,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "10");
     const offset = (page - 1) * limit;
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
 
     // Get total count
     const { count, error: countError } = await supabase
@@ -164,7 +148,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
     const { data, error } = await supabase
       .from("contact_submissions")
       .update({ status, updated_at: new Date().toISOString() })
@@ -208,7 +192,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
     const { error } = await supabase
       .from("contact_submissions")
       .delete()

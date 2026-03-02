@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase, getAuthenticatedSupabase } from "@/lib/supabase";
+import { getSupabase, getServiceSupabase } from "@/lib/supabase";
+import { verifySessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 // Helper to verify admin session and return token
@@ -7,20 +8,8 @@ async function getSessionToken(): Promise<string | null> {
   const cookieStore = await cookies();
   const sessionToken = cookieStore.get("admin-session")?.value;
 
-  if (!sessionToken) {
-    return null;
-  }
-
-  try {
-    const supabase = getSupabase();
-    const { data, error } = await supabase.auth.getUser(sessionToken);
-    if (!error && data.user) {
-      return sessionToken;
-    }
-    return null;
-  } catch {
-    return null;
-  }
+  const user = await verifySessionToken(sessionToken);
+  return user ? sessionToken : null;
 }
 
 // GET - Fetch all team members (public)
@@ -59,7 +48,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
     const { data, error } = await supabase
       .from("teams")
       .insert([
@@ -110,7 +99,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
     const { data, error } = await supabase
       .from("teams")
       .update({
@@ -161,7 +150,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const supabase = getAuthenticatedSupabase(sessionToken);
+    const supabase = getServiceSupabase();
     const { error } = await supabase.from("teams").delete().eq("id", id);
 
     if (error) {
