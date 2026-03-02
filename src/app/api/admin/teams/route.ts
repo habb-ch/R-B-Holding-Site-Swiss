@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 // Helper to verify admin session and return token
 async function getSessionToken(): Promise<string | null> {
   const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("admin-session")?.value;
+  const sessionToken = cookieStore.get("admin-session")?.value ?? null;
 
   const user = await verifySessionToken(sessionToken);
   return user ? sessionToken : null;
