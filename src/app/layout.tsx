@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title:
@@ -46,8 +47,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <Script id="remove-extension-attrs" strategy="beforeInteractive">
+          {`(function(){try{var b=document && document.body;if(b){b.removeAttribute('data-new-gr-c-s-check-loaded');b.removeAttribute('data-gr-ext-installed');var attrs=Array.from(b.attributes||[]).map(a=>a.name).filter(n=>n&&n.indexOf('data-gr')===0);attrs.forEach(function(n){b.removeAttribute(n)});} }catch(e){}})();`}
+        </Script>
       </head>
-      <body className="antialiased">{children}</body>
+      <body suppressHydrationWarning className="antialiased">{children}</body>
     </html>
   );
 }
