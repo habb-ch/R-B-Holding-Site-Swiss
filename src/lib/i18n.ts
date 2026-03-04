@@ -63,7 +63,7 @@ export const translations = {
           website: "#",
         },
         guesthouse: {
-          name: "R&B Guest House",
+          name: "R&B Guest House pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Gastgewerbe",
           description:
@@ -72,7 +72,7 @@ export const translations = {
           website: "https://rbguesthouse.ch",
         },
         farm: {
-          name: "R&B Organic Farm",
+          name: "R&B Organic Farming pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Landwirtschaft",
           description:
@@ -207,7 +207,7 @@ export const translations = {
           website: "#",
         },
         guesthouse: {
-          name: "R&B Guest House",
+          name: "R&B Guest House pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Hospitality",
           description:
@@ -216,7 +216,7 @@ export const translations = {
           website: "https://rbguesthouse.ch",
         },
         farm: {
-          name: "R&B Organic Farm",
+          name: "R&B Organic Farming pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Agriculture",
           description:

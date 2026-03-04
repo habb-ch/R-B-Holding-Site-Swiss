@@ -92,8 +92,8 @@ export default function Contact({ locale }: ContactProps) {
     {
       icon: Phone,
       label: t.contact.phone,
-      value: "+41 34 530 50 40",
-      href: "tel:+41345305040",
+      value: "+41 79 514 05 25",
+      href: "tel:+41 79 514 05 25",
     },
     {
       icon: Building2,
