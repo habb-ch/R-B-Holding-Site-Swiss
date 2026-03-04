@@ -23,7 +23,7 @@ export default function Footer({ locale }: FooterProps) {
     "Tschannen Spritzwerk AG",
     "Leuta Korrosionsschutz AG",
     "R&B Company GmbH",
-    "R&B Guest House",
+    "R&B Guest House pvt. Ltd.",
     "R&B Organic Farming pvt. Ltd.",
   ];
 
