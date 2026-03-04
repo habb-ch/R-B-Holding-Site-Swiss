@@ -88,13 +88,13 @@ export const translations = {
       doubleA: {
         name: "DoubleA Solutions GmbH",
         description:
-          "Spezialist für nachhaltige IT-Lösungen und Photovoltaik-Systeme. Bietet Softwareentwicklung, SaaS-Produkte und komplette Solarinstallationsdienste in der Schweiz an.",
+          "Spezialist für Photovoltaik-Systeme und nachhaltige Energielösungen. Bietet Planung, Installation und umfassende Solarlösungen für private und gewerbliche Projekte in der Schweiz.",
         website: "https://doubleasolutions.ch",
       },
       habb: {
         name: "HABB.ch",
         description:
-          "Strategischer Schweizer Partner für Geschäftsentwicklung, digitale Vernetzung und innovative Lösungen im Schweizer Markt.",
+          "IT-Unternehmen mit Fokus auf KI-Automatisierung und Softwareentwicklung. Entwickelt intelligente digitale Lösungen zur Prozessautomatisierung und zur effizienten Digitalisierung von Unternehmen.",
         website: "https://habb.ch",
       },
     },
@@ -232,13 +232,13 @@ export const translations = {
       doubleA: {
         name: "DoubleA Solutions GmbH",
         description:
-          "Specialist in sustainable IT solutions and photovoltaic systems. Providing software development, SaaS products, and complete solar installation services across Switzerland.",
+          "Specialist in photovoltaic systems and sustainable solar solutions. Provides planning, installation, and complete solar energy systems for residential and commercial projects across Switzerland.",
         website: "https://doubleasolutions.ch",
       },
       habb: {
         name: "HABB.ch",
         description:
-          "Strategic Swiss partner for business development, digital networking, and innovative solutions in the Swiss market.",
+          "IT company specializing in AI automation and software development. Builds intelligent digital solutions to automate business processes and drive efficient digital transformation.",
         website: "https://habb.ch/en",
       },
     },
