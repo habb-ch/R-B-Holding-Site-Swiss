@@ -60,7 +60,7 @@ export const translations = {
           description:
             "Operatives Kernunternehmen der Gruppe mit engem Zusammenspiel zwischen Leuta Korrosionsschutz AG und Tschannen Spritzwerk ag – vereint Prozesse von Anfang bis Ende.",
           tags: ["Industriedienste", "Partnerschaft", "Qualität"],
-          website: "#",
+          website: "https://www.rbcompany.ch/",
         },
         guesthouse: {
           name: "R&B Guest House pvt. Ltd.",
@@ -204,7 +204,7 @@ export const translations = {
           description:
             "Core operating company of the group with close collaboration between Leuta Korrosionsschutz AG and Tschannen Spritzwerk – uniting processes from start to finish.",
           tags: ["Industrial Services", "Partnership", "Quality"],
-          website: "#",
+          website: "https://www.rbcompany.ch/en",
         },
         guesthouse: {
           name: "R&B Guest House pvt. Ltd.",
@@ -239,7 +239,7 @@ export const translations = {
         name: "HABB.ch",
         description:
           "Strategic Swiss partner for business development, digital networking, and innovative solutions in the Swiss market.",
-        website: "https://habb.ch",
+        website: "https://habb.ch/en",
       },
     },
     team: {

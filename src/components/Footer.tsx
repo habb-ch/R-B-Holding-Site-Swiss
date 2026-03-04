@@ -24,7 +24,7 @@ export default function Footer({ locale }: FooterProps) {
     "Leuta Korrosionsschutz AG",
     "R&B Company GmbH",
     "R&B Guest House",
-    "R&B Organic Farm",
+    "R&B Organic Farming pvt. Ltd.",
   ];
 
   const scrollToTop = () => {
