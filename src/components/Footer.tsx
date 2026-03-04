@@ -122,7 +122,7 @@ export default function Footer({ locale }: FooterProps) {
                   href="tel:+41345305040"
                   className="hover:text-white transition-colors"
                 >
-                  +41 34 530 50 40
+                  +41 79 514 05 25
                 </a>
               </p>
             </div>
