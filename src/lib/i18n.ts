@@ -26,7 +26,7 @@ export const translations = {
       founded: "2019",
       capital: "CHF 100K",
       hq: "Burgdorf, CH",
-      companies: "6+",
+      companies: "5+",
     },
     portfolio: {
       title: "Unser Portfolio",
@@ -166,7 +166,7 @@ export const translations = {
       founded: "2019",
       capital: "CHF 100K",
       hq: "Burgdorf, CH",
-      companies: "6+",
+      companies: "5+",
     },
     portfolio: {
       title: "Our Portfolio",
