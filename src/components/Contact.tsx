@@ -81,7 +81,7 @@ export default function Contact({ locale }: ContactProps) {
     {
       icon: MapPin,
       label: t.contact.address,
-      value: "Lyssachstrasse 83, 3400 Burgdorf, Schweiz",
+      value: "Buchmattstrasse 46, 3400 Burgdorf, Switzerland",
     },
     {
       icon: Mail,

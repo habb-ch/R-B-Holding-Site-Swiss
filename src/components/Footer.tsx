@@ -107,7 +107,7 @@ export default function Footer({ locale }: FooterProps) {
               {t.footer.contact}
             </h4>
             <div className="space-y-3 text-sm text-white/50">
-              <p>Lyssachstrasse 83</p>
+              <p>Buchmattstrasse 46</p>
               <p>3400 Burgdorf, Schweiz</p>
               <p className="pt-1">
                 <a
