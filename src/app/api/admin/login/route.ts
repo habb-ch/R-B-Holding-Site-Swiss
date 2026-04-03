@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
 import { loginWithTable } from "@/lib/auth";
 import { cookies } from "next/headers";
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase, getServiceSupabase } from "@/lib/supabase";
+import { getCollection, Collections, Team } from "@/lib/mongodb";
 import { verifySessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
@@ -15,18 +15,13 @@ async function getSessionToken(): Promise<string | null> {
 // GET - Fetch all team members (public)
 export async function GET() {
   try {
-    const supabase = getSupabase();
-    const { data, error } = await supabase
-      .from("teams")
-      .select("*")
-      .order("order_index", { ascending: true });
+    const teamsCollection = await getCollection<Team>(Collections.TEAMS);
+    const teams = await teamsCollection
+      .find({})
+      .sort({ order_index: 1 })
+      .toArray();
 
-    if (error) {
-      console.error("Error fetching teams:", error);
-      return NextResponse.json([], { status: 200 });
-    }
-
-    return NextResponse.json(data || []);
+    return NextResponse.json(teams || []);
   } catch (error) {
     console.error("Error fetching teams:", error);
     return NextResponse.json([], { status: 200 });
@@ -48,30 +43,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
-    const supabase = getServiceSupabase();
-    const { data, error } = await supabase
-      .from("teams")
-      .insert([
-        {
-          name,
-          role: role || "",
-          company: company || "",
-          image_url: image_url || "",
-          order_index: order_index || 0,
-        },
-      ])
-      .select()
-      .single();
+    const teamsCollection = await getCollection<Team>(Collections.TEAMS);
+    const newTeam: Team = {
+      id: crypto.randomUUID(),
+      name,
+      role: role || "",
+      company: company || "",
+      image_url: image_url || "",
+      order_index: order_index || 0,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
 
-    if (error) {
-      console.error("Error creating team member:", error);
-      return NextResponse.json(
-        { error: "Failed to create team member" },
-        { status: 500 },
-      );
-    }
+    await teamsCollection.insertOne(newTeam);
 
-    return NextResponse.json(data, { status: 201 });
+    return NextResponse.json(newTeam, { status: 201 });
   } catch (error) {
     console.error("Error creating team member:", error);
     return NextResponse.json(
@@ -99,30 +85,30 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const supabase = getServiceSupabase();
-    const { data, error } = await supabase
-      .from("teams")
-      .update({
-        name,
-        role,
-        company,
-        image_url,
-        order_index,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", id)
-      .select()
-      .single();
+    const teamsCollection = await getCollection<Team>(Collections.TEAMS);
+    const result = await teamsCollection.findOneAndUpdate(
+      { id },
+      {
+        $set: {
+          name,
+          role,
+          company,
+          image_url,
+          order_index,
+          updated_at: new Date().toISOString(),
+        },
+      },
+      { returnDocument: "after" }
+    );
 
-    if (error) {
-      console.error("Error updating team member:", error);
+    if (!result) {
       return NextResponse.json(
-        { error: "Failed to update team member" },
-        { status: 500 },
+        { error: "Team member not found" },
+        { status: 404 },
       );
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Error updating team member:", error);
     return NextResponse.json(
@@ -150,14 +136,13 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const supabase = getServiceSupabase();
-    const { error } = await supabase.from("teams").delete().eq("id", id);
+    const teamsCollection = await getCollection<Team>(Collections.TEAMS);
+    const result = await teamsCollection.deleteOne({ id });
 
-    if (error) {
-      console.error("Error deleting team member:", error);
+    if (result.deletedCount === 0) {
       return NextResponse.json(
-        { error: "Failed to delete team member" },
-        { status: 500 },
+        { error: "Team member not found" },
+        { status: 404 },
       );
     }
 

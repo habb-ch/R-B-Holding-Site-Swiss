@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabase, getServiceSupabase } from "@/lib/supabase";
+import { getCollection, Collections, ContactSubmission } from "@/lib/mongodb";
 import { verifySessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
 
@@ -22,45 +22,28 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
-    const offset = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
-    const supabase = getServiceSupabase();
+    const contactsCollection = await getCollection<ContactSubmission>(Collections.CONTACT_SUBMISSIONS);
 
     // Get total count
-    const { count, error: countError } = await supabase
-      .from("contact_submissions")
-      .select("*", { count: "exact", head: true });
-
-    if (countError) {
-      console.error("Error counting submissions:", countError);
-      return NextResponse.json(
-        { error: "Failed to count submissions" },
-        { status: 500 },
-      );
-    }
+    const total = await contactsCollection.countDocuments();
 
     // Get paginated data
-    const { data, error } = await supabase
-      .from("contact_submissions")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .range(offset, offset + limit - 1);
-
-    if (error) {
-      console.error("Error fetching submissions:", error);
-      return NextResponse.json(
-        { error: "Failed to fetch submissions" },
-        { status: 500 },
-      );
-    }
+    const data = await contactsCollection
+      .find({})
+      .sort({ created_at: -1 })
+      .skip(skip)
+      .limit(limit)
+      .toArray();
 
     return NextResponse.json({
       data: data || [],
       pagination: {
         page,
         limit,
-        total: count || 0,
-        totalPages: Math.ceil((count || 0) / limit),
+        total,
+        totalPages: Math.ceil(total / limit),
       },
     });
   } catch (error) {
@@ -93,30 +76,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use service role key to bypass RLS for public submissions
-    const supabase = getServiceSupabase();
-    const { data, error } = await supabase
-      .from("contact_submissions")
-      .insert([
-        {
-          name,
-          email,
-          message,
-          status: "new",
-        },
-      ])
-      .select()
-      .single();
+    const contactsCollection = await getCollection<ContactSubmission>(Collections.CONTACT_SUBMISSIONS);
+    const newSubmission: ContactSubmission = {
+      id: crypto.randomUUID(),
+      name,
+      email,
+      message,
+      status: "new",
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
 
-    if (error) {
-      console.error("Error creating submission:", error);
-      return NextResponse.json(
-        { error: "Failed to submit contact form" },
-        { status: 500 },
-      );
-    }
+    await contactsCollection.insertOne(newSubmission);
 
-    return NextResponse.json(data, { status: 201 });
+    return NextResponse.json(newSubmission, { status: 201 });
   } catch (error) {
     console.error("Error creating submission:", error);
     return NextResponse.json(
@@ -148,23 +121,26 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
 
-    const supabase = getServiceSupabase();
-    const { data, error } = await supabase
-      .from("contact_submissions")
-      .update({ status, updated_at: new Date().toISOString() })
-      .eq("id", id)
-      .select()
-      .single();
+    const contactsCollection = await getCollection<ContactSubmission>(Collections.CONTACT_SUBMISSIONS);
+    const result = await contactsCollection.findOneAndUpdate(
+      { id },
+      {
+        $set: {
+          status,
+          updated_at: new Date().toISOString(),
+        },
+      },
+      { returnDocument: "after" }
+    );
 
-    if (error) {
-      console.error("Error updating submission:", error);
+    if (!result) {
       return NextResponse.json(
-        { error: "Failed to update submission" },
-        { status: 500 },
+        { error: "Submission not found" },
+        { status: 404 },
       );
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Error updating submission:", error);
     return NextResponse.json(
@@ -192,17 +168,13 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const supabase = getServiceSupabase();
-    const { error } = await supabase
-      .from("contact_submissions")
-      .delete()
-      .eq("id", id);
+    const contactsCollection = await getCollection<ContactSubmission>(Collections.CONTACT_SUBMISSIONS);
+    const result = await contactsCollection.deleteOne({ id });
 
-    if (error) {
-      console.error("Error deleting submission:", error);
+    if (result.deletedCount === 0) {
       return NextResponse.json(
-        { error: "Failed to delete submission" },
-        { status: 500 },
+        { error: "Submission not found" },
+        { status: 404 },
       );
     }
 

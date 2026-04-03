@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getSupabase } from "@/lib/supabase";
 import { verifySessionToken } from "@/lib/auth";
 
 // Helper to verify admin session

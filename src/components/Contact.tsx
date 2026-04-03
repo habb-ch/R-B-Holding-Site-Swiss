@@ -34,8 +34,8 @@ export default function Contact({ locale }: ContactProps) {
     setError("");
 
     try {
-      // Submit to both FormSubmit and Supabase in parallel
-      const [formSubmitResponse, supabaseResponse] = await Promise.all([
+      // Submit to both FormSubmit and MongoDB API in parallel
+      const [formSubmitResponse, apiResponse] = await Promise.all([
         // FormSubmit for email notification
         fetch("https://formsubmit.co/ajax/info@rbrajhholding.ch", {
           method: "POST",
@@ -50,7 +50,7 @@ export default function Contact({ locale }: ContactProps) {
             _subject: `Neue Kontaktanfrage von ${formData.name}`,
           }),
         }),
-        // Supabase for admin dashboard
+        // MongoDB API for admin dashboard
         fetch("/api/admin/contacts", {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ export default function Contact({ locale }: ContactProps) {
         }),
       ]);
 
-      if (formSubmitResponse.ok || supabaseResponse.ok) {
+      if (formSubmitResponse.ok || apiResponse.ok) {
         setSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setSubmitted(false), 5000);

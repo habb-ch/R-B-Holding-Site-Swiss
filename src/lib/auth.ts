@@ -1,73 +1,93 @@
-import { getServiceSupabase } from "./supabase";
+import bcrypt from "bcryptjs";
+import { getCollection, Collections, AdminUser, AdminSession } from "./mongodb";
 
-// Simple server-side auth using Postgres tables `admin_users` and `admin_sessions`.
+// Simple server-side auth using MongoDB collections `admin_users` and `admin_sessions`.
 // Sessions are random tokens stored in `admin_sessions` with an expiry.
 
 export async function loginWithTable(email: string, password: string) {
-  const supabase = getServiceSupabase();
+  try {
+    const usersCollection = await getCollection<AdminUser>(Collections.ADMIN_USERS);
+    
+    // Find user by email
+    const user = await usersCollection.findOne({ email });
+    
+    if (!user) {
+      return { error: true };
+    }
 
-  // Call Postgres function verify_admin which should return the user's id (uuid)
-  const { data, error } = await supabase.rpc("verify_admin", {
-    p_email: email,
-    p_password: password,
-  });
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+    
+    if (!isPasswordValid) {
+      return { error: true };
+    }
 
-  if (error || !data) return { error: true };
+    // Create a session token
+    const token = crypto.randomUUID();
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+    
+    const sessionsCollection = await getCollection<AdminSession>(Collections.ADMIN_SESSIONS);
+    
+    await sessionsCollection.insertOne({
+      token,
+      user_id: user.id,
+      expires_at: expiresAt,
+      created_at: new Date().toISOString(),
+    });
 
-  // `data` should be the user's id
-  const userId = Array.isArray(data) ? data[0] : data;
-
-  // Create a session token
-  const token = crypto.randomUUID();
-  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-
-  const { error: insertError } = await supabase.from("admin_sessions").insert([
-    { token, user_id: userId, expires_at: expiresAt },
-  ]);
-
-  if (insertError) return { error: true };
-
-  // Fetch user email to return
-  const { data: userData, error: userError } = await supabase
-    .from("admin_users")
-    .select("id,email")
-    .eq("id", userId)
-    .single();
-
-  if (userError || !userData) return { error: true };
-
-  return { token, user: { id: userData.id, email: userData.email } };
+    return { 
+      token, 
+      user: { 
+        id: user.id, 
+        email: user.email 
+      } 
+    };
+  } catch (error) {
+    console.error("Login error:", error);
+    return { error: true };
+  }
 }
 
 export async function verifySessionToken(token: string | null) {
   if (!token) return null;
-  const supabase = getServiceSupabase();
+  
+  try {
+    const sessionsCollection = await getCollection<AdminSession>(Collections.ADMIN_SESSIONS);
+    
+    const session = await sessionsCollection.findOne({ token });
+    
+    if (!session) return null;
 
-  const { data, error } = await supabase
-    .from("admin_sessions")
-    .select("user_id,expires_at")
-    .eq("token", token)
-    .single();
+    const now = new Date().toISOString();
+    if (!session.expires_at || session.expires_at < now) {
+      // Clean up expired session
+      await sessionsCollection.deleteOne({ token });
+      return null;
+    }
 
-  if (error || !data) return null;
+    // Fetch user
+    const usersCollection = await getCollection<AdminUser>(Collections.ADMIN_USERS);
+    const user = await usersCollection.findOne({ id: session.user_id });
+    
+    if (!user) return null;
 
-  const now = new Date().toISOString();
-  if (!data.expires_at || data.expires_at < now) return null;
-
-  // Fetch user
-  const { data: userData, error: userError } = await supabase
-    .from("admin_users")
-    .select("id,email")
-    .eq("id", data.user_id)
-    .single();
-
-  if (userError || !userData) return null;
-
-  return { id: userData.id, email: userData.email };
+    return { 
+      id: user.id, 
+      email: user.email 
+    };
+  } catch (error) {
+    console.error("Verify session error:", error);
+    return null;
+  }
 }
 
 export async function logoutToken(token: string | null) {
   if (!token) return;
-  const supabase = getServiceSupabase();
-  await supabase.from("admin_sessions").delete().eq("token", token);
+  
+  try {
+    const sessionsCollection = await getCollection<AdminSession>(Collections.ADMIN_SESSIONS);
+    await sessionsCollection.deleteOne({ token });
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
 }
