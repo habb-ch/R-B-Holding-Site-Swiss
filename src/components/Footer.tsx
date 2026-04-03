@@ -23,8 +23,8 @@ export default function Footer({ locale }: FooterProps) {
     "Tschannen Spritzwerk AG",
     "Leuta Korrosionsschutz AG",
     "R&B Company GmbH",
-    "R&B Guest House",
-    "R&B Organic Farm",
+    "R&B Guest House pvt. Ltd.",
+    "R&B Organic Farming pvt. Ltd.",
   ];
 
   const scrollToTop = () => {
@@ -107,7 +107,7 @@ export default function Footer({ locale }: FooterProps) {
               {t.footer.contact}
             </h4>
             <div className="space-y-3 text-sm text-white/50">
-              <p>Lyssachstrasse 83</p>
+              <p>Buchmattstrasse 46</p>
               <p>3400 Burgdorf, Schweiz</p>
               <p className="pt-1">
                 <a
@@ -122,7 +122,7 @@ export default function Footer({ locale }: FooterProps) {
                   href="tel:+41345305040"
                   className="hover:text-white transition-colors"
                 >
-                  +41 34 530 50 40
+                  +41 79 514 05 25
                 </a>
               </p>
             </div>

@@ -60,10 +60,10 @@ export const translations = {
           description:
             "Operatives Kernunternehmen der Gruppe mit engem Zusammenspiel zwischen Leuta Korrosionsschutz AG und Tschannen Spritzwerk ag – vereint Prozesse von Anfang bis Ende.",
           tags: ["Industriedienste", "Partnerschaft", "Qualität"],
-          website: "#",
+          website: "https://www.rbcompany.ch/",
         },
         guesthouse: {
-          name: "R&B Guest House",
+          name: "R&B Guest House pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Gastgewerbe",
           description:
@@ -72,7 +72,7 @@ export const translations = {
           website: "https://rbguesthouse.ch",
         },
         farm: {
-          name: "R&B Organic Farm",
+          name: "R&B Organic Farming pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Landwirtschaft",
           description:
@@ -88,13 +88,13 @@ export const translations = {
       doubleA: {
         name: "DoubleA Solutions GmbH",
         description:
-          "Spezialist für nachhaltige IT-Lösungen und Photovoltaik-Systeme. Bietet Softwareentwicklung, SaaS-Produkte und komplette Solarinstallationsdienste in der Schweiz an.",
+          "Spezialist für Photovoltaik-Systeme und nachhaltige Energielösungen. Bietet Planung, Installation und umfassende Solarlösungen für private und gewerbliche Projekte in der Schweiz.",
         website: "https://doubleasolutions.ch",
       },
       habb: {
         name: "HABB.ch",
         description:
-          "Strategischer Schweizer Partner für Geschäftsentwicklung, digitale Vernetzung und innovative Lösungen im Schweizer Markt.",
+          "IT-Unternehmen mit Fokus auf KI-Automatisierung und Softwareentwicklung. Entwickelt intelligente digitale Lösungen zur Prozessautomatisierung und zur effizienten Digitalisierung von Unternehmen.",
         website: "https://habb.ch",
       },
     },
@@ -204,10 +204,10 @@ export const translations = {
           description:
             "Core operating company of the group with close collaboration between Leuta Korrosionsschutz AG and Tschannen Spritzwerk – uniting processes from start to finish.",
           tags: ["Industrial Services", "Partnership", "Quality"],
-          website: "#",
+          website: "https://www.rbcompany.ch/en",
         },
         guesthouse: {
-          name: "R&B Guest House",
+          name: "R&B Guest House pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Hospitality",
           description:
@@ -216,7 +216,7 @@ export const translations = {
           website: "https://rbguesthouse.ch",
         },
         farm: {
-          name: "R&B Organic Farm",
+          name: "R&B Organic Farming pvt. Ltd.",
           location: "Thirunelvely, Jaffna, Sri Lanka",
           sector: "Agriculture",
           description:
@@ -232,14 +232,14 @@ export const translations = {
       doubleA: {
         name: "DoubleA Solutions GmbH",
         description:
-          "Specialist in sustainable IT solutions and photovoltaic systems. Providing software development, SaaS products, and complete solar installation services across Switzerland.",
+          "Specialist in photovoltaic systems and sustainable solar solutions. Provides planning, installation, and complete solar energy systems for residential and commercial projects across Switzerland.",
         website: "https://doubleasolutions.ch",
       },
       habb: {
         name: "HABB.ch",
         description:
-          "Strategic Swiss partner for business development, digital networking, and innovative solutions in the Swiss market.",
-        website: "https://habb.ch",
+          "IT company specializing in AI automation and software development. Builds intelligent digital solutions to automate business processes and drive efficient digital transformation.",
+        website: "https://habb.ch/en",
       },
     },
     team: {

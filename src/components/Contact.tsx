@@ -81,7 +81,7 @@ export default function Contact({ locale }: ContactProps) {
     {
       icon: MapPin,
       label: t.contact.address,
-      value: "Lyssachstrasse 83, 3400 Burgdorf, Schweiz",
+      value: "Buchmattstrasse 46, 3400 Burgdorf, Switzerland",
     },
     {
       icon: Mail,
@@ -92,8 +92,8 @@ export default function Contact({ locale }: ContactProps) {
     {
       icon: Phone,
       label: t.contact.phone,
-      value: "+41 34 530 50 40",
-      href: "tel:+41345305040",
+      value: "+41 79 514 05 25",
+      href: "tel:+41 79 514 05 25",
     },
     {
       icon: Building2,
