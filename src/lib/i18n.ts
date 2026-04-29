@@ -247,7 +247,7 @@ export const translations = {
           "IT company specializing in AI automation and software development. Builds intelligent digital solutions to automate business processes and drive efficient digital transformation.",
         website: "https://habb.ch/en",
       },
-      habb global: {
+      habbGlobal: {
         name: "HABB Global",
         description:
           "Worldwide digital engineering partner for custom software development. Delivers secure and scalable web, mobile, cloud, and AI solutions, complemented by digital marketing (HABB DIGI), AI automation (HABB AI), and access control systems (HABBGate) for clients across multiple continents.",
