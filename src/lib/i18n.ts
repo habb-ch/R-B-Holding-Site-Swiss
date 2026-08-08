@@ -92,10 +92,16 @@ export const translations = {
         website: "https://doubleasolutions.ch",
       },
       habb: {
-        name: "HABB.ch",
+        name: "HABB Switzerland",
         description:
           "IT-Unternehmen mit Fokus auf KI-Automatisierung und Softwareentwicklung. Entwickelt intelligente digitale Lösungen zur Prozessautomatisierung und zur effizienten Digitalisierung von Unternehmen.",
         website: "https://habb.ch",
+      },
+      habbGlobal: {
+        name: "HABB Global",
+        description:
+          "Weltweiter Digital-Engineering-Partner für massgeschneiderte Softwareentwicklung. Liefert sichere und skalierbare Web-, Mobile-, Cloud- und KI-Lösungen, ergänzt durch digitales Marketing (HABB DIGI), KI-Automatisierung (HABB AI) und Zugangskontrollsysteme (HABBGate) für Kunden auf mehreren Kontinenten.",
+        website: "https://habbglobal.com",
       },
     },
     team: {
@@ -236,10 +242,16 @@ export const translations = {
         website: "https://doubleasolutions.ch",
       },
       habb: {
-        name: "HABB.ch",
+        name: "HABB Switzerland",
         description:
           "IT company specializing in AI automation and software development. Builds intelligent digital solutions to automate business processes and drive efficient digital transformation.",
         website: "https://habb.ch/en",
+      },
+      habbGlobal: {
+        name: "HABB Global",
+        description:
+          "Worldwide digital engineering partner for custom software development. Delivers secure and scalable web, mobile, cloud, and AI solutions, complemented by digital marketing (HABB DIGI), AI automation (HABB AI), and access control systems (HABBGate) for clients across multiple continents.",
+        website: "https://habbglobal.com",
       },
     },
     team: {

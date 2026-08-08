@@ -18,6 +18,10 @@ const partnerData = [
     key: "habb" as const,
     logo: "/logos/HABB_ch_Logo.png",
   },
+  {
+    key: "habbGlobal" as const,
+    logo: "/logos/HABB Global Logo.png",
+  },
 ];
 
 export default function Partners({ locale }: PartnersProps) {
